@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dinesh0203')
+        DOCKERHUB_CREDENTIALS = credentials('demohub')
     }
 
     stages {
@@ -25,7 +25,7 @@ pipeline {
         stage('Login to DockerHub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dinesh0203', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'demohub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         sh "docker login -u dinesh0203 -p Dinesh@8056"
                     }
                     echo 'test3'
