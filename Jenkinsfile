@@ -2,14 +2,14 @@ pipeline {
     agent any 
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('vinoth1310')
+        DOCKERHUB_CREDENTIALS = credentials('dinesh0203')
     }
 
     stages {
         stage('SCM Checkout') {
             steps {
-                sh 'rm -rf projectdemo || true'  // Remove existing directory if it exists
-                sh 'git clone https://github.com/Vinoth1310/devops-project.git'
+                sh 'rm -rf demo || true'  // Remove existing directory if it exists
+                sh 'git clone https://github.com/sivadinesh8056622230/sample-nodejs.git '
                 echo 'test1'
             }
         }
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'test2'
-                sh 'docker build -t vinoth1310/nodejs:latest .'
+                sh 'docker build -t dinesh0203/demo:latest .'
 
             }
         }
@@ -25,8 +25,8 @@ pipeline {
         stage('Login to DockerHub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'vinoth1310', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                        sh "docker login -u vinoth1310 -p Vinoth@1310"
+                    withCredentials([usernamePassword(credentialsId: 'dinesh0203', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        sh "docker login -u dinesh0203 -p Dinesh@8056"
                     }
                     echo 'test3'
                 }
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'docker push vinoth1310/nodejs:latest'
+                sh 'docker push dinesh0203/demo:latest'
             }
         }
     }
