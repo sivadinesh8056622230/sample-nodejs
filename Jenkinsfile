@@ -35,7 +35,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'docker push dinesh0203/demo:latest'
+                sh 'docker push dinesh0203/demo:latest .'
             }
         }
     }
